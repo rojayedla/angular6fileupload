@@ -1,0 +1,31 @@
+<div>
+  <h1>
+      {{title}}!
+  </h1>
+  <div draggable="true"  class="uploadfilecontainer"> </div>  
+  <ng-container>
+      <input type="file" id="file" multiple 
+          (change)="getFileDetails($event)">
+
+      <button (click)="uploadFiles()">Upload</button>
+  </ng-container>
+</div>
+
+
+<!-- <mat-card style="width:50%">
+  <div draggable="true"  class="uploadfilecontainer"> </div>  
+  
+  <div style="text-align: center">
+    <h4>Or Drag & Drop to upload your files</h4>
+    <input type="file" 
+          #file 
+          [multiple]="(maxFiles > 1)"
+          (change) = "onFileChange($event)"
+           />            
+  </div>
+  <div class="row error" *ngIf="errors.length > 0">    
+    <ul>
+      <li *ngFor="let err of errors">{{err}}</li>
+    </ul>
+  </div> 
+  </mat-card>  -->

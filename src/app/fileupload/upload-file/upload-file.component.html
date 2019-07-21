@@ -1,0 +1,20 @@
+<p>
+  upload-file works!
+</p>
+
+<mat-card style="width:50%">
+  <div class="uploadfilecontainer" (click)="fileInput.click()"  (onFileDropped)="uploadFile($event)">
+  </div>
+  <div>
+    <input  type="file" #fileInput (change)="uploadFile($event.target.files)">
+  </div>
+  
+  <div  class="files-list" *ngFor="let file of files;let i= index">
+      <p> {{ file }} </p>
+      <button class="delete-file" (click)="deleteAttachment(i)">
+        DEL
+      </button>
+   </div>
+
+</mat-card>
+   
