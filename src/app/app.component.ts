@@ -11,6 +11,11 @@ export class AppComponent {
 
   errorMessage: string;
   images: Array<any>= [];
+
+
+
+
+
   
   afuConfig = {
     multiple: false,
@@ -37,7 +42,15 @@ export class AppComponent {
     },
   };
   
-  constructor(private fileService: FileuploadService) { }
+
+  posturl: any;
+  type: any;
+  constructor(private fileService: FileuploadService) {
+    this.posturl = 'https://example-file-upload-api';
+    this.type = "filename";
+    config: "pdf, image";
+
+   }
 
   ngOnInit(){
     this.getImageData();
@@ -57,6 +70,8 @@ export class AppComponent {
           this.getImageData();
         }
 }
+
+
 
 
 

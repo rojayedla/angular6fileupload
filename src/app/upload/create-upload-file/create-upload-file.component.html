@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="heading">
+    Drag and Drop
+  </div>
+  <div class="subheading">
+    Drop any pdf, xls, doc, docx, png, gif, jpg, etc
+  </div>
+  <div *ngIf="uploader && uploader.queue && uploader.queue.length" class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td class="fileDetails">
+              <strong>
+                <i class="fa fa-files-o" aria-hidden="true"></i> {{ item?.file?.name }}
+              </strong>
+              
+            </td>
+            <td class="actions">
+              <span (click)="fileUpload(item)" *ngIf="!(item.isReady || item.isUploading || item.isSuccess)">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <span class="actionLabel">Upload</span>
+              </span>
+              <span (click)="item.cancel()" *ngIf="item.isUploading">
+                <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                <span class="actionLabel">Cancel</span>
+              </span>
+              <span *ngIf="item.isSuccess">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                <span class="actionLabel">Uploaded</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row web-browse">
+
+    <div class="col-md-12 uploadArea">
+      <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+        class="well my-drop-zone">
+        <div class="placeholder">
+          <i class="fa fa-file-text" aria-hidden="true"></i>
+          <div class="label">Drop Here...</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div>
+      <input id="file" class="inputfile" type="file" ng2FileSelect [uploader]="uploader" accept="image/*,csv/*" capture>
+  </div>
+  <!-- <div class="row mobile-browse">
+    <div class="col-md-12" style="width: 300px;
+      margin: 0 auto;
+      flex: unset;">
+
+      <div class="take-photo col-left">
+        <div class="inputfile-box">
+          <div class="label">Take photo<br>or video</div>
+          <input id="file" class="inputfile" type="file" ng2FileSelect [uploader]="uploader" accept="image/*,csv/*" capture>
+          <label for="file">
+            <span id="file-name" class="file-box"></span>
+            <span class="file-button">
+              <i class="fa fa-camera" aria-hidden="true"></i>
+            </span>
+          </label>
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+
+  <div *ngIf="uploader.queue.length" class="progress-container">
+    <div class="progress-count">
+      <div class="count">{{uploader.progress}}
+        <sup>%</sup>
+      </div>
+      <div class="label">Completed</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+    </div>
+  </div>
+</div>
