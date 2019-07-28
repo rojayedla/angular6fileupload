@@ -1,0 +1,24 @@
+<p>
+  fileupload-section works!
+</p>
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="row">
+  <div class="col-md-12">
+    <app-file-upload 
+      projectId="100" 
+      sectionId="107" 
+      maxFiles="4"
+      maxSize="3"
+      fileExt="JPG, GIF, PNG"
+      (uploadStatus)="refreshImages($event)" >
+    </app-file-upload>
+  </div>
+</div>
+<br>
+
+<div class="well">
+      <img *ngFor="let img of images"
+           [src]="'http://localhost:33699' + img.thumbPath"
+          class="img-thumbnail"
+          alt="">
+  </div>
